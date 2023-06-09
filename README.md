@@ -47,42 +47,67 @@ If the control input changes to AB = 10, then all the gates are restricted excep
  
  
 ### Procedure
-/* write all the steps invloved */
+Start the module using module projname().
+Declare the inputs and outputs along with the select lines according to the multiplexer and demultiplexer.
+Use wire to assign intermediate outputs.
+Use and, or and not gates to get the desired output.
+End the module.
+Generate RTL realization and timing diagrams.
 
 
 
 ### PROGRAM 
-/*
-Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
 
+## MULTIPLEXER
+module ex07(I0,I1,I2,I3,S0,S1,Y);
+input I0,I1,I2,I3,S0,S1;
+output Y;
+wire P,Q,R,S,S0c,S1c;
+not(S0c,S0);
+nor(S1c,S1);
+and(P,S0c,S1c,I0);
+and(Q,S0c,S1,I1);
+and(R,S0,S1c,I2);
+and(S,S0,S1,I3);
+or(Y,P,Q,R,S);
+endmodule
 
-
-
-
+## DEMULTIPLEXER
+module ex07(Y0,Y1,Y2,Y3,S0,S1,I);
+input I,S0,S1;
+output Y0,Y1,Y2,Y3;
+wire S0c,S1c;
+not(S0c,S0);
+nor(S1c,S1);
+and(Y0,I,S0c,S1c);
+and(Y1,I,S0c,S1);
+and(Y2,I,S0,S1c);
+and(Y3,I,S0,S1);
+endmodule
 
 ### RTL LOGIC  
 
+## MULTIPLEXER
+![mux rtl](https://github.com/Divya110205/Exercise-07-Multiplexer-and-De-multiplexer/assets/119404855/519f4148-566d-4e48-a606-5fb01dd92242)
 
-
-
-
-
-
+## DEMULTIPLEXER
+![demux rtl](https://github.com/Divya110205/Exercise-07-Multiplexer-and-De-multiplexer/assets/119404855/86243ef0-ea69-43bd-85b8-6a4345b2394d)
 
 ### TIMING DIGRAMS  
 
+## MULTIPLEXER
+![mux td](https://github.com/Divya110205/Exercise-07-Multiplexer-and-De-multiplexer/assets/119404855/d732f9ad-fd48-4a70-a95a-c023430c98fb)
 
-
-
+## DEMULTIPLEXER
+![demux td](https://github.com/Divya110205/Exercise-07-Multiplexer-and-De-multiplexer/assets/119404855/22538c01-fb2d-4c6e-bbff-75f260858985)
 
 ### TRUTH TABLE 
 
+## MULTIPLEXER
+![mux tt](https://github.com/Divya110205/Exercise-07-Multiplexer-and-De-multiplexer/assets/119404855/15f38f40-fd80-4670-a492-09c7c92c621e)
 
-
-
-
+## DEMULTIPLEXER
+![demux tt](https://github.com/Divya110205/Exercise-07-Multiplexer-and-De-multiplexer/assets/119404855/2c50067f-8cd9-4154-a0d3-778600e66e82)
 
 ### RESULTS 
+Thus the program to design a 4x1 multiplexer and 1x4 demultiplexer is done successful.
